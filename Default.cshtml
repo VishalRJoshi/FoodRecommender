@@ -91,10 +91,8 @@
                               }
                         <h3>@title</h3>
                         }
-                        <img class="product-image hide-from-mobile" src=@r.thumb alt="Image of @r.title" />
-                        <a class="Shun-button" href="~/Savor/@r.Id" title="Shun @r.title">Shun</a>
-                        <a class="Savor-button" href="~/Savor/@r.Id" title="Savor @r.title">Savor</a>
-                        <p class="description"><a href="@r.source_url" title="Learn more about @r.title">...... Learn More ......</a></p>
+                        <a href="@r.source_url" title="Learn more about @r.title" style="text-decoration: none; border: none"><img class="product-image hide-from-mobile" src="@r.thumb" alt="@r.title" /></a>
+                        <a class="Savor-button" href="#" title="Savor @r.title" onclick="savor(this, @r.Id, '@r.title')">Savor</a>
                     </div>
                 </a>
             </li>
