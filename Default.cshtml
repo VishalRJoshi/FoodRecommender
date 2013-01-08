@@ -39,7 +39,13 @@
     <img alt="Featured Recipes" src="@featured.source_img" />
     <div id="featuredProductInfo">
         <div id="productInfo">
-            <h2>@featured.title</h2>
+            @{ string featureTitle = featured.title;
+                           if(featureTitle != null && featureTitle.Length > 35 )
+                           {
+                              featureTitle = featureTitle.Substring(0,35);
+                              }
+             }
+            <h2>@featureTitle</h2>
             <p class="description"><a href="@featured.source_url" title="Learn more about @featured.title">Learn More</a></p>
         </div>
         <div id="callToAction">
