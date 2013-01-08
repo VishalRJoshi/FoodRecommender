@@ -1,0 +1,73 @@
+﻿@using System.IO;
+@using System.Net;
+@using System.Text;
+@using Newtonsoft.Json;
+@using FoodRecommender;
+
+@{
+    Page.Title = "Home";
+    var db = Database.Open("foodRecommender");
+    ////Uncomment the below code and change the searchQuery.  For multiple words use a + inbetween
+    //RecipeList deserializedProduct;
+    //string searchQuery = "soup";
+    //string tags = searchQuery.Replace("+",",");
+    //string tagQuery = "&q=" + searchQuery;
+    //
+    //HttpWebRequest request = WebRequest.Create("http://api.punchfork.com/recipes?key=707887fe5103a7cb"+ tagQuery+"&count=50") as HttpWebRequest;
+    //using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+    //{
+    //    StreamReader reader = new StreamReader(response.GetResponseStream());
+    //    string json = reader.ReadToEnd();
+    //        deserializedProduct = JsonConvert.DeserializeObject<RecipeList>(json);
+    //}
+    //if(deserializedProduct != null && deserializedProduct.Recipes != null && deserializedProduct.Recipes.Count > 0)
+    //{
+    //    foreach(Recipe r in deserializedProduct.Recipes)
+    //    {
+    //            db.Execute(@"INSERT INTO recipes
+    //                    (rating, source_name, thumb, title, source_url, pf_url, published, source_img, shortcode,twc,fbc,suc, tags) VALUES 
+    //                    (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12)",r.Rating,r.SourceName, r.Thumb,r.Title,r.SourceUrl,r.PfUrl,r.Published,r.SourceImg,r.Shortcode,r.Twc,r.Fbc,r.Suc,tags);
+    //    }
+    //}
+    var recipes = db.Query("SELECT TOP(10) * FROM recipes ORDER BY NEWID()").ToList();
+    var featured = recipes[new Random().Next(recipes.Count)];
+}
+
+<h1>Welcome to Food Recommender!</h1>
+
+<div id="featuredProduct">
+    <img alt="Featured Recipes" src="@featured.source_img" />
+    <div id="featuredProductInfo">
+        <div id="productInfo">
+            <h2>@featured.title</h2>
+            <p class="description"><a href="@featured.source_url" title="Learn more about @featured.title">Learn More</a></p>
+        </div>
+        <div id="callToAction">
+            <a class="Savor-button" href="~/Savor/@featured.Id" title="Savor @featured.title">Savor</a>
+        </div>
+    </div>
+</div>
+
+<div id="productsWrapper">
+    <ul id="products" data-role="listview" data-inset="true">
+        @foreach (var r in recipes) {
+            <li class="product">
+                <a href="~/Savor/@r.Id" title="@r.title">
+                    <div class="productInfo">
+                        @{ string title = r.title;
+                           if(title != null && title.Length > 20 )
+                           {
+                              title = title.Substring(0,20);
+                              }
+                        <h3>@title</h3>
+                        }
+                        <img class="product-image hide-from-mobile" src=@r.thumb alt="Image of @r.title" />
+                        <a class="Shun-button" href="~/Savor/@r.Id" title="Shun @r.title">Shun</a>
+                        <a class="Savor-button" href="~/Savor/@r.Id" title="Savor @r.title">Savor</a>
+                        <p class="description"><a href="@r.source_url" title="Learn more about @r.title">...... Learn More ......</a></p>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
