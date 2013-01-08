@@ -1,0 +1,37 @@
+﻿@{
+  var userCookie = Request.Cookies["UserCookie"];
+  if (userCookie == null) {
+    Response.StatusCode = 403;
+    Response.End();
+  }
+  var userGuid = userCookie.Value;
+
+  var recipeId = 0;
+  var recipe = Request.QueryString["recipe"];
+  if (String.IsNullOrEmpty(recipe) || (Int32.TryParse(recipe, out recipeId) == false)) {
+    Response.StatusCode = 403;
+    Response.End();
+  }
+
+  var db = Database.Open("foodRecommender");
+
+  var userRow = db.Query("SELECT Id FROM users WHERE Guid = @0", userGuid).FirstOrDefault();
+  if (userRow == null) {
+    Response.StatusCode = 403;
+    Response.End();
+  }
+  var userId = userRow.Id;
+
+  var recipeRow = db.Query("SELECT Id FROM recipes WHERE Id = @0", recipeId).FirstOrDefault();
+  if (recipeRow == null) {
+    Response.StatusCode = 403;
+    Response.End();
+  }
+
+  db.Execute(@"INSERT INTO votes (UserId, RecipeId, TimeStamp, Vote) VALUES (@0, @1, @2, @3)", userId, recipeId, DateTime.UtcNow, true);
+  
+  Response.ContentType = "text/plain";
+  Response.StatusCode = 200;
+  Response.Write("Thanks!");
+  Response.End();
+}

@@ -33,6 +33,30 @@
     var featured = recipes[new Random().Next(recipes.Count)];
 }
 
+@{
+  var cookie = Request.Cookies["UserCookie"];
+  if (cookie == null) {
+    string userGuid = Guid.NewGuid().ToString("N");
+
+    cookie = new HttpCookie("UserCookie", userGuid) {
+      HttpOnly = true,
+      Expires = DateTime.UtcNow.AddYears(1),
+      Path = "/"
+    };
+
+    string referrer = null;
+    if (Request.UrlReferrer != null) {
+      referrer = Request.UrlReferrer.AbsoluteUri;
+      if (referrer.Length > 512) {
+        referrer = referrer.Substring(0, 512);
+      }
+    }
+
+    db.Execute(@"INSERT INTO users (Guid, CreatedOn, IPAddress, Referrer) VALUES (@0, @1, @2, @3)", userGuid, DateTime.UtcNow, Request.UserHostAddress, referrer);
+    Response.Cookies.Add(cookie);
+  }
+}
+
 <h1>Welcome to Food Recommender!</h1>
 
 <div id="featuredProduct">
