@@ -29,7 +29,15 @@
     //                    (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12)",r.Rating,r.SourceName, r.Thumb,r.Title,r.SourceUrl,r.PfUrl,r.Published,r.SourceImg,r.Shortcode,r.Twc,r.Fbc,r.Suc,tags);
     //    }
     //}
-    var recipes = db.Query("SELECT TOP(12) * FROM recipes ORDER BY NEWID()").ToList();
+    //Akoori 
+    string search = Request["search"];
+    string query = "";
+    if(search != null && search.Trim().Length > 0)
+    {
+        query = "WHERE (tags LIKE '%"+ search +"%') OR (title LIKE '%"+ search +"%')";
+    }
+    string fullQuery = "SELECT TOP(12) * FROM recipes " + query +" ORDER BY NEWID()";
+    var recipes = db.Query(fullQuery).ToList();
     var featured = recipes[new Random().Next(recipes.Count)];
 }
 
@@ -57,9 +65,16 @@
   }
 }
 
-<h1>Welcome to Food Recommender!</h1>
-
-<div id="featuredProduct">
+<div id="searchwrapper">
+    <form action="">
+        <input type="text" class="searchbox" name="search" id="search" value="@search" />
+        <input type="image" src="../Images/Search.png" class="searchbox_submit" value="Search" />
+    </form>
+</div>
+<div class="=hide-from-mobile">
+    <br /><br /><br />
+</div>
+<div id="featuredProduct" class="hide-from-mobile">
     <img alt="Featured Recipes" src="@featured.source_img" />
     <div id="featuredProductInfo">
         <div id="productInfo">
@@ -68,34 +83,34 @@
                            {
                               featureTitle = featureTitle.Substring(0,35);
                               }
-             }
-            <h2>@featureTitle</h2>
-            <p class="description"><a href="@featured.source_url" title="Learn more about @featured.title">Learn More</a></p>
-        </div>
-        <div id="callToAction">
-            <a class="Savor-button" href="~/Savor/@featured.Id" title="Savor @featured.title">Savor</a>
-        </div>
+        }
+        <h2>@featureTitle</h2>
     </div>
+    <div id="callToAction">
+        <a class="Savor-button" href="#" title="Savor @featured.title" onclick="savor(this, @featured.Id, '@featured.title')">Savor</a>
+    </div>
+</div>
 </div>
 
 <div id="productsWrapper">
     <ul id="products" data-role="listview" data-inset="true">
         @foreach (var r in recipes) {
             <li class="product">
-                <a href="~/Savor/@r.Id" title="@r.title">
+                <a href="@r.source_url" title="@r.title">
                     <div class="productInfo">
                         @{ string title = r.title;
-                           if(title != null && title.Length > 20 )
-                           {
-                              title = title.Substring(0,20);
-                              }
+                            if(title != null && title.Length > 20 )
+                            {
+                                title = title.Substring(0,20);
+                            }
                         <h3>@title</h3>
-                        }
-                        <a href="@r.source_url" title="Learn more about @r.title" style="text-decoration: none; border: none"><img class="product-image hide-from-mobile" src="@r.thumb" alt="@r.title" /></a>
-                        <a class="Savor-button" href="#" title="Savor @r.title" onclick="savor(this, @r.Id, '@r.title')">Savor</a>
-                    </div>
-                </a>
-            </li>
-        }
-    </ul>
+                    }
+                    <a href="@r.source_url" title="Learn more about @r.title" style="text-decoration: none; border: none">
+                        <img class="product-image" src="@r.thumb" alt="@r.title" /></a>
+                    <a class="Savor-button" href="#" title="Savor @r.title" onclick="savor(this, @r.Id, '@r.title')">Savor</a>
+                </div>
+            </a>
+        </li>
+    }
+</ul>
 </div>

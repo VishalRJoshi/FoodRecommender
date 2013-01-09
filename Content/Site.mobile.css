@@ -245,8 +245,8 @@ and (min-width : 321px) {
             background-color: #edece8;
             border: 1px #e6e3d8 solid;
             height: 185px;
-            margin: 0 0 7px 0;
-            padding: 6px;
+            margin:  0 0 7px 10px;
+            padding: 16px;
             width: 187px;
         }
 }
@@ -304,16 +304,17 @@ and (orientation : portrait) {
             padding: 0 0 0 14px;
         }
         .product {
-
+    padding: 0 0 0 14px;
+    margin: 10px;
         }
 
         .product-image {
             background-color: #edece8;
             border: 1px #e6e3d8 solid;
-            height: 200px;
-            margin: 0 0 7px 0;
+            height: 150px;
+            margin: 0 0 7px 40px;
             padding: 6px;
-            width: 185px;
+            width: 150px;
         }
 }
 
@@ -344,12 +345,15 @@ and (orientation : portrait) {
     }
     
     a.Savor-button {
-        background-color: #a52f09;
+        background-color: #28A509;
         border: 1px solid #712107;
-        color: #fdfcf7;
+        color:  #fdfcf7;
         padding: 5px 10px 5px 20px;
         margin-bottom: 20px;
-        max-width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+        max-width: 80%;
+        text-align: center;
     
         /*CSS3 properties*/
         border-radius: 4px; 
@@ -365,7 +369,7 @@ and (orientation : portrait) {
         }
 
         #products a.Savor-button{
-            float: right;
+            float: left;
         }
 
 /* Forms   
@@ -619,4 +623,46 @@ and (max-width : 320px) {
 
 .field-validation-valid {
     display: none;
+}
+
+.about {
+    font-size: 1.6em;
+}
+#searchwrapper {
+    width: 200px;
+    height: 32px;
+    background-repeat: no-repeat;
+    padding: 0px;
+    margin: 10px;
+    position: relative;
+    background-color: rgba(230, 227, 216, 0.94);
+    display: block;
+    float: left;
+    border-radius: 3px;
+}
+
+#searchwrapper form {
+    display: block;
+    float: left;
+}
+
+.searchbox {
+    border: 0px;
+    background-color: transparent;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    width: 150px;
+    height: 28px;
+    font-size: 1.6em;
+}
+
+.searchbox_submit {
+    border: 0px;
+    background-color: transparent;
+    position: absolute;
+    top: 4px;
+    left: 165px;
+    width: 22px;
+    height: 28px;
 }
