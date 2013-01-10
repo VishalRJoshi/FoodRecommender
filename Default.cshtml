@@ -30,6 +30,7 @@
     //    }
     //}
     //Akoori 
+
     string search = Request["search"];
     string query = "";
     if(search != null && search.Trim().Length > 0)
@@ -65,52 +66,28 @@
   }
 }
 
-<div id="searchwrapper">
-    <form action="">
-        <input type="text" class="searchbox" name="search" id="search" value="@search" />
-        <input type="image" src="../Images/Search.png" class="searchbox_submit" value="Search" />
-    </form>
-</div>
-<div class="=hide-from-mobile">
-    <br /><br /><br />
-</div>
-<div id="featuredProduct" class="hide-from-mobile">
-    <img alt="Featured Recipes" src="@featured.source_img" />
-    <div id="featuredProductInfo">
-        <div id="productInfo">
-            @{ string featureTitle = featured.title;
-                           if(featureTitle != null && featureTitle.Length > 35 )
-                           {
-                              featureTitle = featureTitle.Substring(0,35);
-                              }
-        }
-        <h2>@featureTitle</h2>
+
+<div id="bannerWrapper">
+  <div id="banner">
+    <div id="bannerOverlay">Catchy Message!</div>
+    <div id="bannerMessage">
+      Action Message
+      <div>
+        <button id="spinButton" onclick="window.refresh()">Spin It!</button>
+      </div>
     </div>
-    <div id="callToAction">
-        <a class="Savor-button" href="#" title="Savor @featured.title" onclick="savor(this, @featured.Id, '@featured.title')">Savor</a>
-    </div>
-</div>
+  </div>
 </div>
 
 <div id="productsWrapper">
+
     <ul id="products" data-role="listview" data-inset="true">
         @foreach (var r in recipes) {
             <li class="product">
-                <a href="@r.source_url" title="@r.title">
-                    <div class="productInfo">
-                        @{ string title = r.title;
-                            if(title != null && title.Length > 20 )
-                            {
-                                title = title.Substring(0,20);
-                            }
-                        <h3>@title</h3>
-                    }
-                    <a href="@r.source_url" title="Learn more about @r.title" style="text-decoration: none; border: none">
-                        <img class="product-image" src="@r.thumb" alt="@r.title" /></a>
-                    <a class="Savor-button" href="#" title="Savor @r.title" onclick="savor(this, @r.Id, '@r.title')">Savor</a>
-                </div>
-            </a>
-        </li>
-    }
-</ul>
+              <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank"><img class="product-image" src="@r.thumb" alt="@r.title" /></a>
+              <div class="productInfo">@r.title</div>
+              <button class="savor-button" title="Savor @r.title" onclick="savor(this, @r.Id, '@r.title')"></button>
+            </li>
+        }
+    </ul>
 </div>

@@ -3,29 +3,23 @@
     <head>
         <meta charset="utf-8" />
         <title>Food Recommender - @Page.Title</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href="~/Content/Site.css" rel="stylesheet" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <script src="~/Scripts/modernizr-2.5.3.js"></script>
-        <script src="~/Scripts/jquery-1.7.1.min.js"></script>
         <script src="~/Scripts/Site.js"></script>
         @RenderSection("Scripts", required: false)
     </head>
     <body>
         <div id="page">
             <header>
-                <p class="site-title"><a href="~/">Food Recommender</a></p>
-                <nav>
-                    <ul>
-                        <li><a href="~/">Spin It!!</a></li>
-                        <li><a href="~/About">About Us</a></li>
-                    </ul>
-                </nav>
+                <p class="site-title">Food Recommender</p>
             </header>
             <div id="body">
                 @RenderBody()
             </div>
             <footer>
-                &copy;@DateTime.Now.Year - Food Recommender
+                &copy;2013 - Food Recommender
             </footer>
         </div>
     </body>

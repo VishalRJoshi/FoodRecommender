@@ -5,15 +5,14 @@ html {
     padding: 0;
 }
 
-header, footer, hgroup,
-nav, section {
+header, footer, hgroup, nav, section {
     display: block;
 }
 
 body {
-    background: #fff url(../Images/bkg.png) repeat-x top left;
+    background-color: #e0e0e0;
     color: #696969;
-    font-family: Tahoma, Verdana, Helvetica, Sans-Serif;
+    font-family: 'Open Sans', Helvetica;
     font-size: .75em;
     margin: 0;
     padding: 0;
@@ -38,26 +37,61 @@ a:active {
     color: #a52f09;
 }
 
-input[type=submit] {
-        background-color: #a52f09;
-        border: 1px solid #712107;
-        color: #fdfcf7;
-        cursor: pointer;
-    
-        /*CSS3 properties*/
-        border-radius: 4px; 
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        box-shadow: 1px 2px 5px #b4b4b4;
-        -webkit-box-shadow: 1px 2px 4px rgba(136,136,136, 0.6);
-        -moz-box-shadow: 1px 2px 5px #b4b4b4;
-    }
-
 /* Basic Layout
 ----------------------------------------------------------*/
+#bannerWrapper {
+  max-width: 960px;
+  padding: 10px;
+}
+
+#banner {
+  background-image: url(images/Banner.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+  position: relative;
+  font-family: 'Open Sans', Helvetica;
+  font-size: 20pt;
+  color: white;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+#bannerOverlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 215px;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.75));
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+#bannerMessage {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 215px;
+  height: 100%;
+  background-color: rgba(0,0,0,.75);
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+#bannerMessage button {
+  border: none;
+  padding: 5px;
+  background-color: #EA533D;
+  font-family: 'Open Sans', Helvetica;
+  font-size: 16pt;
+}
+
 #page {
     margin: 0 auto;
-    width: 960px;
+    max-width: 960px;
 }
 
 header {
@@ -65,19 +99,13 @@ header {
 }
 
 #body, footer {
-    border-top: 1px dotted #5d5a53;
     clear: both;
 }
 
-#footer {
-    padding: 10px;
+footer {
+  margin-top: 20px;
+  margin-bottom: 10px;
     text-align: center;
-}
-
-div#sidebar {
-    float: right;
-    margin:10px 0px 10px 30px;
-    width: 27%;
 }
 
 section#main {
@@ -85,101 +113,14 @@ section#main {
     width: 65%;
 }
 
-/* Menu
-----------------------------------------------------------*/
-nav ul {
-    float: right;
-    font-size: 1.4em;
-    list-style: none;
-    margin: 50px 0 0 0;
-}
 
-    nav ul li {
-        float: left;
-        margin-left: 30px;
-    }
-
-.site-title a {
-    background: transparent url(../Images/brand.png) no-repeat;
-    float: left;
-    height: 50px;
+.site-title {
+  font-family: 'Open Sans', Helvetica;
+  font-kerning: normal;
+  font-size: 30pt;
     margin: 15px;
     padding: 0;
-    text-indent: -9999px;
-    width: 400px;
 }
-
-/* Featured Product
-----------------------------------------------------------*/
-div#featuredProduct {
-    background-color: #fdfcf7;
-    border: 4px solid #e6e3d8;
-    height: 300px;
-    margin: 20px auto;
-    width: 920px;
-    
-    /*CSS3 properties*/
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    box-shadow: 0px 2px 5px #888;
-    -webkit-box-shadow: 0px 2px 5px #888;
-    -moz-box-shadow: 0px 2px 5px #888;
-}
-
-    div#featuredProduct img {
-        float: left;
-         height: 300px;
-         width: 670px;
-        /*CSS3 properties*/
-        border-radius: 3px 0px 0px 3px;
-        -moz-border-radius: 3px 0px 0px 3px;
-        -webkit-border-radius: 3px 0px 0px 3px;
-    }
-
-    #featuredProductInfo {
-        float: right;
-        height: 100%;
-        padding: 0 10px;
-        width: 230px;
-    }
-
-        #productInfo {
-            height: 250px;
-            overflow: auto;
-        }
-
-            #productInfo h2 {
-                font-size: 2.5em;
-                font-weight: normal;
-                margin: 5px 0;
-            }
-
-            #productInfo .description {
-                font-size: 1.2em;
-                margin: 55px;
-            }
-
-            #productInfo .price {
-                font-size: 1.75em;
-                margin: 5px 0;
-            }
-
-        #callToAction a.Savor-button {
-            font-size: 2em;
-            padding: 5px 0;
-            text-align:center;
-            width: 100%;
-        }
-#callToAction a.Shun-button {
-            font-size: 2em;
-            padding-top:5px;
-padding-bottom:5px;
-padding-right:55px;
-padding-left:5px;
-            text-align:center;
-            width: 100%;
-        }
 
 /* Products
 ----------------------------------------------------------*/
@@ -187,317 +128,72 @@ padding-left:5px;
     list-style: none;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .product {
-    float: left;
-    margin: 10px 12px;
-    width: 215px;
+  display: inline-block;
+  width: 215px;
+  border: solid 1px #cecece;
+  margin: 10px;
+  background: white;
+  padding: 2px;
+  box-sizing: border-box;
+  position: relative;
+  text-align: left;
 }
 
-    .product .productInfo {
-        height: 300px;
-        overflow: hidden;
-    }
-
-        .product h3 {
-            font-size: 1.65em;
-            font-weight: normal;
-            margin: 0 0 5px 0;
-            padding: 0;
-        }
-
-        .product-image {
-            background-color: #edece8;
-            border: 1px #e6e3d8 solid;
-            height: 200px;
-            margin: 0 0 7px 0;
-            padding: 6px;
-            width: 200px;
-        }
-
-        .hide-from-desktop
-        {
-            /* Only for mobile devices */
-            display: none;
-        }
-
-        .product .description {
-            margin: 0;
-        }
-
-    .product .price {
-        float: left;
-        font-size: 1.5em;
-        margin: 0;
-    }
-
-    .product input[type=submit] {
-        float: right;
-        padding: 2px 7px;
-    }
-    
-    a.Savor-button {
-        background-color: #28A509;
-        border: 1px solid #155305;
-        color:  #fdfcf7;
-        float: right;
-        padding: 2px 7px;
-    
-        /*CSS3 properties*/
-        border-radius: 4px; 
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        box-shadow: 1px 2px 5px #b4b4b4;
-        -webkit-box-shadow: 1px 2px 4px rgba(136,136,136, 0.6);
-        -moz-box-shadow: 1px 2px 5px #b4b4b4;
-    }
-    
-        a.Savor-button:hover {
-            color: #fdfcf7;
-        }
-a.Shun-button {
-        background-color: #a52f09;
-        border: 1px solid #712107;
-        color: #fdfcf7;
-        float: left;
-        padding: 2px 7px;
-    
-        /*CSS3 properties*/
-        border-radius: 4px; 
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        box-shadow: 1px 2px 5px #b4b4b4;
-        -webkit-box-shadow: 1px 2px 4px rgba(136,136,136, 0.6);
-        -moz-box-shadow: 1px 2px 5px #b4b4b4;
-    }
-    
-        a.Shun-button:hover {
-            color:  #fdfcf7;
-        }
-
-/* Forms   
-----------------------------------------------------------*/
-fieldset {
-    border: 1px solid #CCC;
-    margin: 1em 0;
-    padding: 1em;
+.product .productLink {
+  text-decoration: none;
+  border: 0px;
+  padding: 0px;
+  margin: 4px;
+  display: inline-block;
+  font-size: 0px;
 }
 
-    fieldset legend {
-        font-size: 1.1em;
-        font-weight: bold;
-        padding: 2px 4px 8px 4px;
-    }
-
-    fieldset ol {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-        fieldset ol li {
-            padding-bottom: 5px;
-        }
-
-    fieldset label {
-        display: block;
-        font-size: 1.2em;
-        margin-bottom: 3px;
-    }
-
-        fieldset label:after {
-            content: ":";
-        }
-
-    fieldset label.checkbox {
-        display: inline;
-    }
-
-    fieldset input[type="text"], input[type="password"] {
-        border: 1px solid #ccc;
-        color: #444;
-        font-size: 1.2em;
-        padding: 2px;
-        width: 300px;
-    }
-
-    fieldset input[type="submit"] {
-        padding: 5px;
-    }
-
-    fieldset textarea {
-        color: #444;
-        width: 300px;
-    }
-
-    .no-legend {
-        border: none;
-        padding: 0;
-    }
-
-        .no-legend legend {
-            display: none;
-        }
-
-/* Savor   
-----------------------------------------------------------*/
-.quantity label {
-    display: inline;
+.product .productLink img {
+  border: none;
 }
 
-.quantity input[type=text] {
-    width: 30px;
+.product .productInfo {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 170px;
+  font-family: 'Open Sans', Helvetica;
+  font-size: 10pt;
+  font-weight: normal;
+  margin: 4px;
+  display: inline-block;
 }
 
-#SavorTotal {
-    font-weight: bold;
+.product-image {
+  height: 200px;
+  width: 200px;
 }
 
-.Savor-image {
-    float: left;
-    margin: 10px 30px 10px 0px;
+.hide-from-desktop {
+  /* Only for mobile devices */
+  display: none;
 }
 
-.Savor-success {
-    background: #edece8;
-    color: #696969;
+button.savor-button {
+  display: inline-block;
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  background-image: url(images/Heart.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 4px;
+  border: none;
+  cursor: auto;
 }
 
-    .Savor-success h2 {
-        margin: 0;
-    }
-    
-
-#SavorProcess {
-    list-style: none;
-    padding: 0;
-    clear: both;
-}
-
-    #SavorProcess li {
-        color: #696969;
-        display: inline;
-        font-size: 1.2em;
-        margin-right: 15px;
-        padding: 3px 0px 0px 5px;
-    }
-    
-        .step-number {
-            background-color: #edece8;
-            border: 1px solid #e6e4d9;
-            font-size: 1.5em;
-            margin-right: 5px;
-            padding: 3px 10px;
-        }
-    
-        .current .step-number {
-            background-color: #a52f09;
-            border-color: #712107;
-            color: #fefefe;
-        }
-
-
-/* Information and errors  
-----------------------------------------------------------*/  
-.message {
-    border: 1px solid;
-    clear: both;
-    margin: 10px 0px;
-    padding: 15px 15px;
-    
-    /*CSS3 properties*/
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    box-shadow: 2px 2px 5px #888;
-    -webkit-box-shadow: 2px 2px 5px #888;
-    -moz-box-shadow: 2px 2px 5px #888;
-}
-
-.info {
-    background: #bde5f8;
-    color: #00529b;
-}
-
-.error {
-    background: #ffccba;
-    color: #d63301;
-}
-        
-.field-validation-error {
-    color: #be3e16;
-    font-weight: bold;
-}
-
-    .field-validation-error:before {
-        content: "«";
-        margin:0 3px;
-    }
-    
-.validation-summary-errors {
-    color: #be3e16;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.validation-summary-errors ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.validation-summary-valid {
-    display: none;
-}
-
-.field-validation-valid {
-    display: none;
-}
-
-#searchwrapper {
-    width: 310px;
-    height: 40px;
-    background-repeat: no-repeat;
-    padding: 0px;
-    margin: 15px;
-    position: relative;
-    background-color: rgba(230, 227, 216, 0.94);
-    display: block;
-    float: right;
-    border-radius: 5px;
-}
-
-#searchwrapper form {
-    display: block;
-    float: right;
-}
-
-.searchbox {
-    border: 0px;
-    background-color: transparent;
-    position: absolute;
-    top: 4px;
-    left: 9px;
-    width: 256px;
-    height: 28px;
-    font-size: 1.6em;
-}
-
-.searchbox_submit {
-    border: 0px;
-    background-color: transparent;
-    position: absolute;
-    top: 4px;
-    left: 265px;
-    width: 32px;
-    height: 28px;
-}
-
-.about {
-    font-size: 1.6em;
-}
-
-.about {
-    font-size: 1.6em;
+button.savor-button[disabled] {
+  background-image: url(images/HeartSavored.png);
+  cursor: default;
 }
