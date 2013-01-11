@@ -68,15 +68,20 @@
 
 
 <div id="bannerWrapper">
-  <div id="banner">
-    <div id="bannerOverlay">Catchy Message!</div>
-    <div id="bannerMessage">
-      Action Message
-      <div>
-        <button id="spinButton" onclick="location.reload(true)">Spin It!</button>
-      </div>
+    <div id="banner">
+            <img alt="food love" src="Content/Images/CherryLove.png" style="float: left;margin-left: 20px; height:300px"/>
+            <p>We are building a cool app to recommend food that you’ll simply love. </p>
+            <p>We’d really appreciate if you take a few minutes to check out the sampling of dishes and <img alt="heart" src="Content/images/HeartSavored.png"/> what you like. This will help us learn, get smarter, and in a few weeks come back with personalized suggestions. </p>
+
+            <p>Thanks for your anonymous help! </p>
+            <p>@@nikhilk & @@vishalrjoshi </p>
+
+
+            @*Action Message
+                        <div>
+                            <button id="spinButton" onclick="location.reload(true)">Spin It!</button>
+                        </div>*@
     </div>
-  </div>
 </div>
 
 <div id="productsWrapper">
@@ -84,9 +89,9 @@
     <ul id="products" data-role="listview" data-inset="true">
         @foreach (var r in recipes) {
             <li class="product">
-              <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank"><img class="product-image" src="@r.thumb" alt="@r.title" /></a>
-              <div class="productInfo">@r.title</div>
-              <button class="savor-button" title="Savor @r.title" onclick="savor(this, @r.Id, '@r.title')"></button>
+                <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank"><img class="product-image" src="@r.thumb" alt="@r.title" /></a>
+                <div class="productInfo">@r.title</div>
+                <button class="savor-button" title="Savor @r.title" onclick="savor(this, @r.Id, '@r.title')"></button>
             </li>
         }
     </ul>
