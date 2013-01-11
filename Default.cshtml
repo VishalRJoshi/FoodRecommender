@@ -66,26 +66,26 @@
   }
 }
 
+<div id="seperator"></div>
+    <div id="bannerWrapper">
+        <div id="banner">
+            <img alt="food love" src="Content/Images/CherryLove.png" style="float: left;margin-left: 20px; margin-right:30px; height:250px" />
 
-<div id="bannerWrapper">
-    <div id="banner">
-            <img alt="food love" src="Content/Images/CherryLove.png" style="float: left;margin-left: 20px; height:300px"/>
-            <p>We are building a cool app to recommend food that you’ll simply love. </p>
-            <p>We’d really appreciate if you take a few minutes to check out the sampling of dishes and <img alt="heart" src="Content/images/HeartSavored.png"/> what you like. This will help us learn, get smarter, and in a few weeks come back with personalized suggestions. </p>
-
-            <p>Thanks for your anonymous help! </p>
-            <p>@@nikhilk & @@vishalrjoshi </p>
-
+            We are building a cool app to recommend food that you’ll love to try next.
+            Could you please take take a few moments to check out the sampling of dishes and <img alt="heart" src="Content/images/HeartRed.png" /> what you like. This will help us learn, get smarter, and in a few weeks come back with very personalized recommendations.<br />
+            Thanks for your anonymous help! <br />
+            @@nikhilk & @@vishalrjoshi 
 
             @*Action Message
                         <div>
                             <button id="spinButton" onclick="location.reload(true)">Spin It!</button>
                         </div>*@
+        </div>
     </div>
-</div>
+<div id="seperator"></div>
 
-<div id="productsWrapper">
 
+<div id="productsWrapper" >
     <ul id="products" data-role="listview" data-inset="true">
         @foreach (var r in recipes) {
             <li class="product">

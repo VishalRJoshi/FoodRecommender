@@ -10,21 +10,21 @@ header, footer, hgroup, nav, section {
 }
 
 body {
-    background-color: #f8f2f2; /*#e0e0e0;*/
+    background-color: white; /*#f8f2f2;*/
     color: #696969;
     font-family: 'Open Sans', Helvetica;
     font-size: .75em;
-    margin: 0;
+    margin: 0px;
     padding: 0;
 }
 
 a:link {
-    color: #3b3420;
+    color: #8d1c19; /*#3b3420;*/
     text-decoration: none;
 }
 
 a:visited {
-    color: #3b3420;
+    color: #8d1c19 /*#3b3420*/;
     text-decoration: none;
 }
 
@@ -34,37 +34,57 @@ a:hover {
 }
 
 a:active {
-    color: #a52f09;
+    color: #8d1c19 /*#a52f09;*/
+    ;
 }
 
 /* Basic Layout
 ----------------------------------------------------------*/
+
 #bannerWrapper {
-  max-width: 940px;
-  padding: 2px;
+    max-width: 940px;
+    padding: 2px;
+    margin-bottom: 0px;
 }
 
+
+
+
 #banner {
-  width: 100%;
-  height: 305px;
-  margin-bottom: 0px;
-font-family: 'Reenie Beanie', cursive;
-  font-size: 20pt;
-  text-align: left;
-  box-sizing: border-box;
+    width: 100%;
+    height: 265px;
+    margin-bottom: 0px;
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 22px;
+    color: #8d1c19;
+    text-align: left;
+    box-sizing: border-box;
 }
 
 #bannerMessage button {
-  border: none;
-  padding: 5px;
-  background-color: #EA533D;
-  font-family: 'Open Sans', Helvetica;
-  font-size: 16pt;
+    border: none;
+    padding: 5px;
+    background-color: #EA533D;
+    font-family: 'Open Sans', Helvetica;
+    font-size: 16pt;
+}
+
+#base {
+    /*background: #DBDAD8 url(http://static.foodgawker.com/wp-content/themes/Foodgawker/gawkerverse-parent/assets/img/main-texture.jpg);*/
+    /*background: url(Images/cuttingBoard.png);*/
+    background-image:url('Images/cuttingBoard.png');
+background-repeat:repeat-y;
+}
+
+#seperator {
+    background-color: #82573f; /*#8b9d4b;*/
+    height: 10px;
 }
 
 #page {
     margin: 0 auto;
     max-width: 960px;
+    background-color: white;
 }
 
 header {
@@ -76,27 +96,45 @@ header {
 }
 
 footer {
-  margin-top: 20px;
-  margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     text-align: center;
+    font-family: 'Risque', cursive;
+    font-size: 12pt;
+    color: #8d1c19;
+    vertical-align: bottom;
+}
+
+.about {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'Risque', cursive;
+    font-size: 10pt;
+    color: #8d1c19;
 }
 
 section#main {
     float: left;
     width: 65%;
+    height:100%;
 }
 
 
 .site-title {
-  font-family: 'Open Sans', Helvetica;
-  font-kerning: normal;
-  font-size: 30pt;
+    font-family: 'Open Sans', Helvetica;
+    font-kerning: normal;
+    font-size: 30pt;
     margin: 15px;
     padding: 0;
 }
 
 /* Products
 ----------------------------------------------------------*/
+#productswrapper {
+}
+
 #products {
     list-style: none;
     margin: 0;
@@ -105,68 +143,68 @@ section#main {
 }
 
 .product {
-  display: inline-block;
-  width: 215px;
-  border: solid 1px #cecece;
-  margin: 10px;
-  background: white;
-  padding: 2px;
-  box-sizing: border-box;
-  position: relative;
-  text-align: left;
+    display: inline-block;
+    width: 215px;
+    border: solid 1px #cecece;
+    margin: 10px;
+    background: white;
+    padding: 2px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: left;
 }
 
 .product .productLink {
-  text-decoration: none;
-  border: 0px;
-  padding: 0px;
-  margin: 4px;
-  display: inline-block;
-  font-size: 0px;
+    text-decoration: none;
+    border: 0px;
+    padding: 0px;
+    margin: 4px;
+    display: inline-block;
+    font-size: 0px;
 }
 
 .product .productLink img {
-  border: none;
+    border: none;
 }
 
 .product .productInfo {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 170px;
-  font-family: 'Open Sans', Helvetica;
-  font-size: 10pt;
-  font-weight: normal;
-  margin: 4px;
-  display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 170px;
+    font-family: 'Open Sans', Helvetica;
+    font-size: 10pt;
+    font-weight: normal;
+    margin: 4px;
+    display: inline-block;
 }
 
 .product-image {
-  height: 200px;
-  width: 200px;
+    height: 200px;
+    width: 200px;
 }
 
 .hide-from-desktop {
-  /* Only for mobile devices */
-  display: none;
+    /* Only for mobile devices */
+    display: none;
 }
 
 button.savor-button {
-  display: inline-block;
-  position: absolute;
-  bottom: 4px;
-  right: 6px;
-  width: 24px;
-  height: 24px;
-  background-image: url(images/Heart.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding: 4px;
-  border: none;
-  cursor: auto;
+    display: inline-block;
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    background-image: url(images/Heart.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 4px;
+    border: none;
+    cursor: auto;
 }
 
 button.savor-button[disabled] {
-  background-image: url(images/HeartSavored.png);
-  cursor: default;
+    background-image: url(images/HeartRed.png);
+    cursor: default;
 }
