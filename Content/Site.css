@@ -65,7 +65,7 @@ header .highlight {
   text-shadow: 0px 0px 2px #842827;
 }
 
-#bannerWrapper {
+div.bannerWrapper {
   max-width: 940px;
   padding-left: 20px;
   padding-right: 20px;
@@ -74,7 +74,7 @@ header .highlight {
   text-shadow: 0px 0px 1px #ccc;
 }
 
-#banner {
+div.banner {
   width: 100%;
   text-align: left;
   box-sizing: border-box;
@@ -88,6 +88,7 @@ footer {
   font-size: 10pt;
   color: #8d1c19;
   vertical-align: bottom;
+  padding-top: 10px;
 }
 
 #productsWrapper {
@@ -113,20 +114,8 @@ footer {
   text-align: left;
 }
 
-.product .productLink {
+a.productLink {
   text-decoration: none;
-  border: 0px;
-  padding: 0px;
-  margin: 4px;
-  display: inline-block;
-  font-size: 0px;
-}
-
-.product .productLink img {
-  border: none;
-}
-
-.product .productInfo {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -136,11 +125,14 @@ footer {
   font-weight: normal;
   margin: 4px;
   display: inline-block;
+  color: #444;
 }
 
-.product-image {
+.productImage {
   height: 275px;
   width: 275px;
+  margin: 4px;
+  display: inline-block;
 }
 
 button.savor-button {
@@ -150,6 +142,7 @@ button.savor-button {
   right: 6px;
   width: 24px;
   height: 24px;
+  background-color: transparent;
   background-image: url(images/Heart.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -158,9 +151,8 @@ button.savor-button {
   cursor: pointer;
 }
 
-button.savor-button[disabled] {
+.savored button.savor-button {
   background-image: url(images/HeartSavored.png);
-  cursor: default;
 }
 
 #refreshButton {
@@ -174,4 +166,47 @@ button.savor-button[disabled] {
   width: 290px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.reveal-modal-bg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  background: rgba(0,0,0,.8);
+  z-index: 100;
+  display: none;
+  top: 0;
+  left: 0;
+}
+.reveal-modal {
+  visibility: hidden;
+  top: 100px;
+  left: 50%;
+  margin-left: -300px;
+  width: 520px;
+  background: #eee url(../images/modal-gloss.png) no-repeat -200px -80px;
+  position: absolute;
+  z-index: 101;
+  padding: 8px 10px 8px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+  -box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+.reveal-modal.small {
+  width: 300px; margin-left: -140px;
+}
+.reveal-modal .close-reveal-modal {
+  font-size: 22px;
+  line-height: .5;
+  position: absolute;
+  top: 8px;
+  right: 11px;
+  color: #aaa;
+  text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+  font-weight: bold;
+  cursor: pointer;
 }

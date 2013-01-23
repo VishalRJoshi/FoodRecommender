@@ -66,13 +66,13 @@
   }
 }
 
-<div id="bannerWrapper">
-  <div id="banner">
+<div class="bannerWrapper">
+  <div class="banner">
     <p>Coming soon: an app that recommends food you'll love to try.</p>
     <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you.
       Could you please take a few moments to sample these dishes, and <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" /> what you like.
     Thanks for your help!</p>
-    <p><a href="http://twitter.com/nikhilk">@@nikhilk</a> &amp; <a href="http://twitter.com/vishalrjoshi">@@vishalrjoshi</a></p>
+    <p><a href="mailto:vishal.joshi@microsoft.com,nikhilko@microsoft.com">Nikhil Kothari and Vishal Joshi</a></p>
   </div>
 </div>
 
@@ -80,27 +80,57 @@
   <ul id="products" data-role="listview" data-inset="true">
     @foreach (var r in recipes) {
       <li class="product">
-        <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank"><img class="product-image" src="@r.thumb" alt="@r.title" /></a>
-        <div class="productInfo">@r.title</div>
+        <img class="productImage" src="@r.thumb" alt="@r.title" onclick="savor(this, @r.Id)"/>
+        <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank">@r.title</a>
         <button class="savor-button" title="Savor @r.title" onclick="savor(this, @r.Id)"></button>
       </li>
     }
   </ul>
   <button id="refreshButton" onclick="location.reload(true)">Check out More Dishes!</button>
+  <br />
+  <br />
+  <img src="Content/Images/Punchfork.png" alt="Powered by Punchfork" title="Food data courtesy of Punchfork.com" />
+</div>
+
+<div id="info" class="reveal-modal small">
+  <header>
+    Food <span class="highlight">Recommender</span>
+  </header>
+  <div class="bannerWrapper">
+    <div class="banner">
+      <p>Coming soon: an app that recommends food you'll love to try.</p>
+      <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you.
+        Could you please take a few moments to sample these dishes, and <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" /> what you like.
+      Thanks for your help!</p>
+    </div>
+  </div>
 </div>
 
 <script>
-  function savor(button, id) {
+  function savor(item, id) {
+    var vote;
+    item = item.parentNode;
+    if (item.className == 'product savored') {
+      item.className = 'product';
+      vote = 'false';
+    }
+    else {
+      item.className = 'product savored';
+      vote = 'true';
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
     }
-    xhr.open('POST', 'Savor?recipe=' + id, true);
+    xhr.open('POST', 'Savor?recipe=' + id + '&vote=' + vote, true);
     xhr.send();
-
-    button.disabled = true;
   }
 
   document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() { window.scrollTo(0, 1); }, 0);
   }, false);
+
+  $(document).ready(function() {
+    $('#info').reveal();
+  });
 </script>
