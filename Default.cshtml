@@ -68,7 +68,7 @@
         @foreach (var r in recipes)
         {
             <li class="product">
-                <img class="productImage" src="@r.thumb" alt="@r.title" onclick="savor(this, @r.Id)"/>
+                <img class="productImage" src="http://mlstorage.blob.core.windows.net/fr-thumbs/@(r.Id).jpg" alt="@r.title" onclick="savor(this, @r.Id)"/>
                 <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank">@r.title</a>
                 <button class="savor-button" title="Savor @r.title" onclick="savor(this, @r.Id)"></button>
             </li>
