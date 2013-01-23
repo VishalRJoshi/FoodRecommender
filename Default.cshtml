@@ -7,30 +7,7 @@
 @{
     Page.Title = "Home";
     var db = Database.Open("foodRecommender");
-    ////Uncomment the below code and change the searchQuery.  For multiple words use a + inbetween
-    //RecipeList deserializedProduct;
-    //string searchQuery = "soup";
-    //string tags = searchQuery.Replace("+",",");
-    //string tagQuery = "&q=" + searchQuery;
-    //
-    //HttpWebRequest request = WebRequest.Create("http://api.punchfork.com/recipes?key=707887fe5103a7cb"+ tagQuery+"&count=50") as HttpWebRequest;
-    //using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-    //{
-    //    StreamReader reader = new StreamReader(response.GetResponseStream());
-    //    string json = reader.ReadToEnd();
-    //        deserializedProduct = JsonConvert.DeserializeObject<RecipeList>(json);
-    //}
-    //if(deserializedProduct != null && deserializedProduct.Recipes != null && deserializedProduct.Recipes.Count > 0)
-    //{
-    //    foreach(Recipe r in deserializedProduct.Recipes)
-    //    {
-    //            db.Execute(@"INSERT INTO recipes
-    //                    (rating, source_name, thumb, title, source_url, pf_url, published, source_img, shortcode,twc,fbc,suc, tags) VALUES 
-    //                    (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12)",r.Rating,r.SourceName, r.Thumb,r.Title,r.SourceUrl,r.PfUrl,r.Published,r.SourceImg,r.Shortcode,r.Twc,r.Fbc,r.Suc,tags);
-    //    }
-    //}
-
-
+   
     string search = Request["search"];
     string query = "";
     if(search != null && search.Trim().Length > 0)
@@ -68,11 +45,11 @@
 
 <div class="bannerWrapper">
   <div class="banner">
-    <p>Coming soon: an app that recommends food you'll love to try.</p>
-    <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you.
+    <p>Coming soon: An app that recommends food you'll love to try.</p>
+    <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you.</p><p>
       Could you please take a few moments to sample these dishes, and <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" /> what you like.
     Thanks for your help!</p>
-    <p><a href="mailto:vishal.joshi@microsoft.com,nikhilko@microsoft.com">Nikhil Kothari and Vishal Joshi</a></p>
+    <p><a href="mailto:vishal.joshi@microsoft.com,nikhilko@microsoft.com">Nikhil Kothari & Vishal Joshi</a></p>
   </div>
 </div>
 
@@ -98,8 +75,8 @@
   </header>
   <div class="infoWrapper">
     <div class="infoContent">
-      <p>Coming soon: an app that recommends food you'll love to try.</p>
-      <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you.
+      <p>Coming soon: An app that recommends food you'll love to try.</p>
+      <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you. </p><p>
         Could you please take a few moments to sample these dishes, and <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" /> what you like.
       Thanks for your help!</p>
     </div>
