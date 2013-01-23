@@ -28,7 +28,8 @@
     Response.End();
   }
 
-  db.Execute(@"INSERT INTO votes (UserId, RecipeId, TimeStamp, Vote) VALUES (@0, @1, @2, @3)", userId, recipeId, DateTime.UtcNow, true);
+  var vote = Convert.ToBoolean(Request.QueryString["vote"]);
+  db.Execute(@"INSERT INTO votes (UserId, RecipeId, TimeStamp, Vote) VALUES (@0, @1, @2, @3)", userId, recipeId, DateTime.UtcNow, vote);
   
   Response.ContentType = "text/plain";
   Response.StatusCode = 200;
