@@ -7,107 +7,128 @@
 @{
     Page.Title = "Home";
     var db = Database.Open("foodRecommender");
-   
+
     string search = Request["search"];
     string query = "";
-    if(search != null && search.Trim().Length > 0)
+    if (search != null && search.Trim().Length > 0)
     {
-        query = "WHERE (tags LIKE '%"+ search +"%') OR (title LIKE '%"+ search +"%')";
+        query = "WHERE (tags LIKE '%" + search + "%') OR (title LIKE '%" + search + "%')";
     }
-    string fullQuery = "SELECT TOP(12) * FROM recipes " + query +" ORDER BY NEWID()";
+    string fullQuery = "SELECT TOP(12) * FROM recipes " + query + " ORDER BY NEWID()";
     var recipes = db.Query(fullQuery).ToList();
     var featured = recipes[new Random().Next(recipes.Count)];
 }
 
 @{
-  var cookie = Request.Cookies["UserCookie"];
-  if (cookie == null) {
-    string userGuid = Guid.NewGuid().ToString("N");
+    bool showModal = false;
+    var cookie = Request.Cookies["UserCookie"];
+    if (cookie == null)
+    {
+        showModal = true;
+        string userGuid = Guid.NewGuid().ToString("N");
 
-    cookie = new HttpCookie("UserCookie", userGuid) {
-      HttpOnly = true,
-      Expires = DateTime.UtcNow.AddYears(1),
-      Path = "/"
-    };
+        cookie = new HttpCookie("UserCookie", userGuid)
+        {
+            HttpOnly = true,
+            Expires = DateTime.UtcNow.AddYears(1),
+            Path = "/"
+        };
 
-    string referrer = null;
-    if (Request.UrlReferrer != null) {
-      referrer = Request.UrlReferrer.AbsoluteUri;
-      if (referrer.Length > 512) {
-        referrer = referrer.Substring(0, 512);
-      }
+        string referrer = null;
+        if (Request.UrlReferrer != null)
+        {
+            referrer = Request.UrlReferrer.AbsoluteUri;
+            if (referrer.Length > 512)
+            {
+                referrer = referrer.Substring(0, 512);
+            }
+        }
+
+        db.Execute(@"INSERT INTO users (Guid, CreatedOn, IPAddress, Referrer) VALUES (@0, @1, @2, @3)", userGuid, DateTime.UtcNow, Request.UserHostAddress, referrer);
+        Response.Cookies.Add(cookie);
     }
-
-    db.Execute(@"INSERT INTO users (Guid, CreatedOn, IPAddress, Referrer) VALUES (@0, @1, @2, @3)", userGuid, DateTime.UtcNow, Request.UserHostAddress, referrer);
-    Response.Cookies.Add(cookie);
-  }
 }
 
 <div class="bannerWrapper">
-  <div class="banner">
-    <p>Coming soon: An app that recommends food you'll love to try.</p>
-    <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you.</p><p>
-      Could you please take a few moments to sample these dishes, and <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" /> what you like.
-    Thanks for your help!</p>
-    <p><a href="mailto:vishal.joshi@microsoft.com,nikhilko@microsoft.com">Nikhil Kothari & Vishal Joshi</a></p>
-  </div>
+    <div class="banner">
+        <p>Coming soon: An app that recommends food you'll love to try.</p>
+        <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you.</p>
+        <p>
+            Could you please take a few moments to sample these dishes, and
+            <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" />
+            what you like.
+    Thanks for your help!
+        </p>
+        <p><a href="mailto:vishal.joshi@microsoft.com,nikhilko@microsoft.com">Nikhil Kothari & Vishal Joshi</a></p>
+    </div>
 </div>
 
-<div id="productsWrapper" >
-  <ul id="products" data-role="listview" data-inset="true">
-    @foreach (var r in recipes) {
-      <li class="product">
-        <img class="productImage" src="@r.thumb" alt="@r.title" onclick="savor(this, @r.Id)"/>
-        <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank">@r.title</a>
-        <button class="savor-button" title="Savor @r.title" onclick="savor(this, @r.Id)"></button>
-      </li>
-    }
-  </ul>
-  <button id="refreshButton" onclick="location.reload(true)">Check out More Dishes!</button>
-  <br />
-  <br />
-  <img src="Content/Images/Punchfork.png" alt="Powered by Punchfork" title="Food data courtesy of Punchfork.com" />
+<div id="productsWrapper">
+    <ul id="products" data-role="listview" data-inset="true">
+        @foreach (var r in recipes)
+        {
+            <li class="product">
+                <img class="productImage" src="@r.thumb" alt="@r.title" onclick="savor(this, @r.Id)"/>
+                <a class="productLink" href="@r.source_url" title="Learn more about @r.title" target="_blank">@r.title</a>
+                <button class="savor-button" title="Savor @r.title" onclick="savor(this, @r.Id)"></button>
+            </li>
+        }
+    </ul>
+    <button id="refreshButton" onclick="location.reload(true)">Check out More Dishes!</button>
+    <br />
+    <br />
+    <img src="Content/Images/Punchfork.png" alt="Powered by Punchfork" title="Food data courtesy of Punchfork.com" />
 </div>
+
+
 
 <div id="info" class="reveal-modal close-reveal-modal">
-  <header>
-    Food <span class="highlight">Recommender</span>
-  </header>
-  <div class="infoWrapper">
-    <div class="infoContent">
-      <p>Coming soon: An app that recommends food you'll love to try.</p>
-      <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you. </p><p>
-        Could you please take a few moments to sample these dishes, and <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" /> what you like.
-      Thanks for your help!</p>
+    <header>
+        Food <span class="highlight">Recommender</span>
+    </header>
+    <div class="infoWrapper">
+        <div class="infoContent">
+            <p>Coming soon: An app that recommends food you'll love to try.</p>
+            <p>Right now, we're collecting a set of anonymous taste profiles to learn &amp; get smarter, so we can personalize recommendations for you. </p>
+            <p>
+                Could you please take a few moments to sample these dishes, and
+                <img alt="heart" src="Content/images/HeartSavored.png" valign="absmiddle" width="16" height="16" />
+                what you like.
+      Thanks for your help!
+            </p>
+        </div>
     </div>
-  </div>
 </div>
 
+
 <script>
-  function savor(item, id) {
-    var vote;
-    item = item.parentNode;
-    if (item.className == 'product savored') {
-      item.className = 'product';
-      vote = 'false';
-    }
-    else {
-      item.className = 'product savored';
-      vote = 'true';
+    function savor(item, id) {
+        var vote;
+        item = item.parentNode;
+        if (item.className == 'product savored') {
+            item.className = 'product';
+            vote = 'false';
+        }
+        else {
+            item.className = 'product savored';
+            vote = 'true';
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+        }
+        xhr.open('POST', 'Savor?recipe=' + id + '&vote=' + vote, true);
+        xhr.send();
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-    }
-    xhr.open('POST', 'Savor?recipe=' + id + '&vote=' + vote, true);
-    xhr.send();
-  }
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () { window.scrollTo(0, 1); }, 0);
+    }, false);
 
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() { window.scrollTo(0, 1); }, 0);
-  }, false);
-
-  $(document).ready(function() {
-    $('#info').reveal();
+    $(document).ready(function () {
+      @if (showModal)
+      {
+    <text>$('#info').reveal();</text>
+      }
   });
 </script>
