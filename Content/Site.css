@@ -28,6 +28,7 @@ body {
   font-size: .75em;
   margin: 0px;
   padding: 0;
+  overflow-x: hidden;
 }
 
 a:link {
@@ -168,6 +169,20 @@ button.savor-button {
   margin-bottom: 10px;
 }
 
+div.infoWrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: 'Open Sans', Helvetica;
+  font-size: 10pt;
+  text-shadow: 0px 0px 1px #ccc;
+}
+
+div.infoContent {
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
 .reveal-modal-bg {
   position: fixed;
   height: 100%;
@@ -183,8 +198,7 @@ button.savor-button {
   visibility: hidden;
   top: 100px;
   left: 50%;
-  margin-left: -300px;
-  width: 520px;
+  width: 300px; margin-left: -160px;
   background: #eee url(../images/modal-gloss.png) no-repeat -200px -80px;
   position: absolute;
   z-index: 101;
@@ -195,9 +209,6 @@ button.savor-button {
   -moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
   -box-shadow: 0 0 10px rgba(0,0,0,.4);
-}
-.reveal-modal.small {
-  width: 300px; margin-left: -140px;
 }
 .reveal-modal .close-reveal-modal {
   font-size: 22px;
